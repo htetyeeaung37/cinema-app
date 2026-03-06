@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "tsx watch index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "reset": "prisma migrate reset",
     "seed": "tsx prisma/seed.ts"
   },
@@ -16,7 +18,8 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3"
+    "jsonwebtoken": "^9.0.3",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",
