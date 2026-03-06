@@ -26,12 +26,12 @@ app.use(cors({
   credentials: true
 }));
 
-// ၂။ OPTIONS Request Handler - ဒါက အခုနကတက်နေတဲ့ Error ကို တိုက်ရိုက်ဖြေရှင်းပေးမှာပါ
+// ၂။ OPTIONS Request Handler (CORS Preflight error ကို ရှင်းရန်)
 app.options('*', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
-  res.sendStatus(200); // 200 OK အဖြေကို အတင်းပြန်ပေးခိုင်းခြင်း
+  res.sendStatus(200); 
 });
 
 app.use(express.json());
@@ -43,7 +43,9 @@ app.use("/api/showtimes", showtimeRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/seats", seatRoutes);
 app.use("/api/cinemas", cinemaRoutes);
-app.use('/static', express.static(path.join(__dirname, 'public')));
+
+// Static file များအတွက် path ကို သေချာသတ်မှတ်ခြင်း
+app.use('/static', express.static(path.join(process.cwd(), 'public')));
 
 // ── Health check ────────────────────────────────────────
 app.get("/", (_req, res) => {
@@ -55,6 +57,12 @@ app.use((_req, res) => {
   res.status(404).json({ error: "Route not found" });
 });
 
-app.listen(PORT, () => {
-  console.log(`🎬 Cinema API running on http://localhost:${PORT}`);
-});
+// Vercel အတွက် export လုပ်ပေးခြင်း (ဒါက 500 error မတက်အောင် ကူညီပေးပါတယ်)
+export default app;
+
+// Local မှာ run ရန်အတွက်သာ listen လုပ်ခြင်း
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🎬 Cinema API running on http://localhost:${PORT}`);
+  });
+}
