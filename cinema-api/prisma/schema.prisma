@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("USER") // USER | ADMIN
+  createdAt DateTime @default(now())
+
+  bookings  Booking[]
+}
+
+model Movie {
+  id          Int      @id @default(autoincrement())
+  title       String @unique
+  description String
+  genre       String
+  duration    Int      // in minutes
+  rating      String   // e.g. "PG-13", "R"
+  posterUrl   String?
+  language    String   @default("English")
+  releaseDate DateTime
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  showtimes   Showtime[]
+}
+
+model Cinema {
+  id        Int      @id @default(autoincrement())
+  name      String
+  location  String
+  createdAt DateTime @default(now())
+
+  halls     Hall[]
+}
+
+model Hall {
+  id        Int      @id @default(autoincrement())
+  name      String   // e.g. "Hall A", "Hall 1"
+  totalRows Int
+  totalCols Int
+  cinemaId  Int
+
+  cinema    Cinema     @relation(fields: [cinemaId], references: [id])
+  showtimes Showtime[]
+  seats     Seat[]
+}
+
+model Seat {
+  id       Int    @id @default(autoincrement())
+  row      String // e.g. "A", "B"
+  col      Int    // e.g. 1, 2, 3
+  type     String @default("STANDARD") // STANDARD | VIP | WHEELCHAIR
+  hallId   Int
+
+  hall            Hall              @relation(fields: [hallId], references: [id])
+  bookedSeats     BookedSeat[]
+}
+
+model Showtime {
+  id          Int      @id @default(autoincrement())
+  movieId     Int
+  hallId      Int
+  startTime   DateTime
+  endTime     DateTime
+  price       Float
+  format      String   @default("2D") // 2D | 3D | IMAX
+  language    String   @default("English")
+  isActive    Boolean  @default(true)
+
+  movie       Movie      @relation(fields: [movieId], references: [id])
+  hall        Hall       @relation(fields: [hallId], references: [id])
+  bookings    Booking[]
+}
+
+model Booking {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  showtimeId  Int
+  totalAmount Float
+  status      String   @default("PENDING") // PENDING | CONFIRMED | CANCELLED
+  paymentRef  String?
+  createdAt   DateTime @default(now())
+
+  user        User         @relation(fields: [userId], references: [id])
+  showtime    Showtime     @relation(fields: [showtimeId], references: [id])
+  bookedSeats BookedSeat[]
+}
+
+model BookedSeat {
+  id        Int @id @default(autoincrement())
+  bookingId Int
+  seatId    Int
+
+  booking   Booking @relation(fields: [bookingId], references: [id])
+  seat      Seat    @relation(fields: [seatId], references: [id])
+
+  @@unique([bookingId, seatId])
+}
