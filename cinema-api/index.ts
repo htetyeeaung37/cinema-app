@@ -19,10 +19,7 @@ const PORT = process.env.PORT || 3001;
 // ── Middleware ──────────────────────────────────────────
 // CORS ကို Production URL အတွက် ပြင်ဆင်ခြင်း
 app.use(cors({
-  origin: [
-    "https://cinema-app-snye.vercel.app", // မင်းရဲ့ Frontend Vercel URL
-    "http://localhost:3000"                // Local မှာ စမ်းဖို့အတွက်
-  ],
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
