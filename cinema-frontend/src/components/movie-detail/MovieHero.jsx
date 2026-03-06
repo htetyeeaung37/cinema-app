@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 const MovieHero = ({ movie }) => {
   const router = useRouter();
-  const BACKEND_URL = "http://localhost:3001/static/movies";
+  const BACKEND_URL = "https://cinema-app-iota.vercel.app/static/movies";
 
   const ratingMap = { G: 8.5, PG: 7.5, "PG-13": 8.2, R: 8.8 };
   const displayScore = ratingMap[movie.rating] || 7.0;

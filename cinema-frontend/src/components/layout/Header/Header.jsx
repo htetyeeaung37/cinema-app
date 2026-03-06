@@ -12,7 +12,7 @@ import {
   PlayCircle,
 } from "lucide-react";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:3001";
+const API_BASE = "https://cinema-app-iota.vercel.app";
 
 const Header = () => {
   const router = useRouter();

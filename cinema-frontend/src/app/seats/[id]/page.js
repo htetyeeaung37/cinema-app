@@ -37,7 +37,7 @@ export default function SeatSelectionPage() {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:3001/api/showtimes/${showtimeId}`,
+          `https://cinema-app-iota.vercel.app/api/showtimes/${showtimeId}`,
         );
         if (!response.ok) throw new Error("Showtime not found");
         const data = await response.json();

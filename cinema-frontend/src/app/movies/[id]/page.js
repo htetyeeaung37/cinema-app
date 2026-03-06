@@ -46,7 +46,7 @@ export default function MovieDetailPage() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/movies/${id}`);
+        const response = await fetch(`https://cinema-app-iota.vercel.app/api/movies/${id}`);
         const data = await response.json();
 
         const transformedData = {

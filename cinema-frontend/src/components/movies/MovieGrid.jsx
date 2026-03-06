@@ -13,7 +13,7 @@ const MovieGrid = () => {
     const fetchMovies = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3001/api/movies");
+        const response = await fetch("https://cinema-app-iota.vercel.app/api/movies");
 
         if (!response.ok) throw new Error("Failed to fetch movies");
 

@@ -14,7 +14,7 @@ export default function SuccessPage() {
   const [movieData, setMovieData] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/showtimes/${id}`)
+    fetch(`https://cinema-app-iota.vercel.app/api/showtimes/${id}`)
       .then((res) => res.json())
       .then((data) => setMovieData(data));
   }, [id]);
