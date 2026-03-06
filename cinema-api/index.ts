@@ -17,13 +17,22 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // ── Middleware ──────────────────────────────────────────
-// CORS setting ကို route တွေ အပေါ်ဆုံးမှာ ထားပါ
+
+// ၁။ CORS configuration
 app.use(cors({
-  origin: "*", // အားလုံးကို ခွင့်ပြုထားခြင်း
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // OPTIONS ကိုပါ ထည့်ပေးပါ
-  allowedHeaders: ["Content-Type", "Authorization"], // လိုအပ်တဲ့ header တွေ ခွင့်ပြုပါ
+  origin: "*", 
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
   credentials: true
 }));
+
+// ၂။ OPTIONS Request Handler - ဒါက အခုနကတက်နေတဲ့ Error ကို တိုက်ရိုက်ဖြေရှင်းပေးမှာပါ
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  res.sendStatus(200); // 200 OK အဖြေကို အတင်းပြန်ပေးခိုင်းခြင်း
+});
 
 app.use(express.json());
 
