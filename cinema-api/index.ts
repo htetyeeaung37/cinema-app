@@ -17,10 +17,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // ── Middleware ──────────────────────────────────────────
-// CORS ကို Production URL အတွက် ပြင်ဆင်ခြင်း
+// CORS setting ကို route တွေ အပေါ်ဆုံးမှာ ထားပါ
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: "*", // အားလုံးကို ခွင့်ပြုထားခြင်း
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // OPTIONS ကိုပါ ထည့်ပေးပါ
+  allowedHeaders: ["Content-Type", "Authorization"], // လိုအပ်တဲ့ header တွေ ခွင့်ပြုပါ
   credentials: true
 }));
 
