@@ -47,7 +47,8 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/seats", seatRoutes);
 app.use("/api/cinemas", cinemaRoutes);
 
-app.use("/static", express.static(path.join(process.cwd(), "public")));
+// app.use("/static", express.static(path.join(process.cwd(), "public")));
+app.use("/static", express.static(path.join(process.cwd(), "cinema-api/public")));
 
 app.get("/", (_req, res) => {
   res.json({ status: "ok", message: "Cinema API is running 🎬" });
