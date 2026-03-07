@@ -102,7 +102,7 @@ async function main() {
       genre: "Mystery",
       duration: 110,
       rating: "G",
-      posterUrl: "accused.webp",
+      posterUrl: "https://res.cloudinary.com/dcvgxzbyt/image/upload/v1772890627/accused_ois4ha.webp",
       language: "English",
       releaseDate: new Date("2026-02-10"),
       description:
