@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 const MovieHero = ({ movie }) => {
   const router = useRouter();
-  const BACKEND_URL = "https://cinema-app-iota.vercel.app/static/movies";
 
   const ratingMap = { G: 8.5, PG: 7.5, "PG-13": 8.2, R: 8.8 };
   const displayScore = ratingMap[movie.rating] || 7.0;
@@ -27,7 +26,7 @@ const MovieHero = ({ movie }) => {
           <div className="absolute -inset-1 bg-gradient-to-b from-amber-400/20 to-transparent blur-lg opacity-30 group-hover:opacity-50 transition duration-500 rounded-3xl" />
 
           <img
-            src={`${BACKEND_URL}/${movie.posterUrl}`}
+            src={`/movies/${movie.posterUrl}`}
             alt={movie.title}
             className="relative w-[220px] h-[330px] rounded-2xl object-cover shadow-2xl border border-slate-700/50 transition-transform duration-700 group-hover:scale-[1.03]"
           />

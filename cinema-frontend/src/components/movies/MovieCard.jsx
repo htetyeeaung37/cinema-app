@@ -6,13 +6,11 @@ import { Star, Clock, Ticket } from "lucide-react";
 const MovieCard = ({
   movie: { id, title, genre, rating, duration, posterUrl, description },
 }) => {
-  const BACKEND_URL = "https://cinema-app-iota.vercel.app/static";
-
   return (
     <div className="group relative flex flex-col bg-slate-900/50 border border-slate-800 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(251,191,36,0.1)]">
       <div className="relative aspect-[2/3] overflow-hidden">
         <img
-          src={`${BACKEND_URL}/${posterUrl}`}
+          src={`/movies/${posterUrl}`}
           alt={title}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
         />
