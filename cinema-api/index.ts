@@ -40,14 +40,14 @@ app.options("/{*splat}", (req, res) => {
 
 app.use(express.json());
 
+app.use('/static', express.static(path.join(process.cwd(), 'public/movies')));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/movies", movieRoutes);
 app.use("/api/showtimes", showtimeRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/seats", seatRoutes);
 app.use("/api/cinemas", cinemaRoutes);
-
-app.use('/static', express.static(path.join(process.cwd(), 'public/movies')));
 
 app.get("/", (_req, res) => {
   res.json({ status: "ok", message: "Cinema API is running 🎬" });
