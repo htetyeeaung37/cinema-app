@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/public/movies/$1"
+      "dest": "/movies/$1"
     },
     {
       "src": "/(.*)",
