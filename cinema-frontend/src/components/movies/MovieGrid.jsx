@@ -13,7 +13,10 @@ const MovieGrid = () => {
     const fetchMovies = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://cinema-app-iota.vercel.app/api/movies");
+
+        const response = await fetch(
+          "https://cinema-app-iota.vercel.app/api/movies",
+        );
 
         if (!response.ok) throw new Error("Failed to fetch movies");
 
@@ -23,7 +26,7 @@ const MovieGrid = () => {
           ...movie,
           poster: movie.posterUrl,
           duration: `${movie.duration}min`,
-          rating: { G: 8.5, PG: 7.5, "PG-13": 8.0 }[movie.rating] || 7.0,
+          rating: movie.rating,
           showtimes: [],
         }));
 

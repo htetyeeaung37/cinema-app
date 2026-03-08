@@ -76,3 +76,4 @@ const MovieHero = ({ movie }) => {
 };
 
 export default MovieHero;
+

@@ -3,9 +3,20 @@ import Link from "next/link";
 import React from "react";
 import { Star, Clock, Ticket } from "lucide-react";
 
-const MovieCard = ({
-  movie: { id, title, genre, rating, duration, posterUrl, description },
-}) => {
+const MovieCard = ({ movie }) => {
+  const { id, title, genre, rating, duration, posterUrl, description } = movie;
+
+  // Rating Mapping Logic
+  const ratingMap = {
+    G: "8.5",
+    PG: "7.5",
+    "PG-13": "8.2",
+    R: "8.8",
+  };
+
+  const cleanRating = rating?.toString().trim().toUpperCase();
+  const displayScore = ratingMap[cleanRating] || rating || "7.0";
+
   return (
     <div className="group relative flex flex-col bg-slate-900/50 border border-slate-800 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(251,191,36,0.1)]">
       <div className="relative aspect-[2/3] overflow-hidden">
@@ -19,7 +30,7 @@ const MovieCard = ({
 
         <div className="absolute top-4 right-4 px-2 py-1.5 bg-slate-950/80 backdrop-blur-md border border-slate-700 rounded-xl flex items-center gap-1.5 shadow-xl">
           <Star size={14} className="text-amber-400 fill-amber-400" />
-          <span className="text-white text-xs font-black">{rating}</span>
+          <span className="text-white text-xs font-black">{displayScore}</span>
         </div>
       </div>
 
