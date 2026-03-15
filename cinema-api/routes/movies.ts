@@ -15,7 +15,7 @@ router.get("/", async (req: Request, res: Response) => {
         ...(active !== "false" && { isActive: true }),
         ...(genre && { genre: { equals: genre as string } }),
         ...(search && {
-          title: { contains: search as string },
+          title: { contains: search as string, mode: "insensitive" },
         }),
       },
       orderBy: { releaseDate: "desc" },
