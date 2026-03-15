@@ -111,7 +111,7 @@ const Header = () => {
             <div className="relative hidden md:block" ref={dropdownRef}>
               <div className="relative group">
                 <Search
-                  className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${query ? "text-amber-400" : "text-slate-500"}`}
+                  className={`absolute left-4 top-1/2 -translate-y-1/2 transition-color group-focus-within:text-amber-400 text-slate-500`}
                   size={18}
                 />
                 <input
@@ -120,7 +120,7 @@ const Header = () => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="w-64 lg:w-96 pl-11 pr-10 py-2.5 rounded-2xl bg-slate-900/50 border border-slate-700 text-white text-sm focus:border-amber-400 focus:ring-4 focus:ring-amber-400/10 outline-none transition-all placeholder:text-slate-600"
+                  className="w-64 lg:w-96 pl-11 pr-10 py-2.5 rounded-2xl bg-slate-900/50 border border-slate-700 text-white text-sm focus:border-amber-400 outline-none transition-all placeholder:text-slate-600"
                 />
                 {query && (
                   <button
@@ -195,7 +195,7 @@ const Header = () => {
                     </div>
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 flex items-center gap-3 transition-colors"
+                      className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 flex items-center gap-3 transition-colors cursor-pointer"
                     >
                       <LogOut size={16} /> Sign Out
                     </button>

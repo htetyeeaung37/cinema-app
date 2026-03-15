@@ -160,11 +160,10 @@ export default function Payment({
                 <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">
                   Your Account Name
                 </label>
-                <div className="relative">
-                  <User
-                    size={16}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600"
-                  />
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500 group-focus-within:text-amber-400 transition-colors">
+                    <User size={16} />
+                  </div>
                   <input
                     type="text"
                     placeholder="e.g. John Doe"
@@ -189,11 +188,11 @@ export default function Payment({
                 <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">
                   Your Account Number
                 </label>
-                <div className="relative">
-                  <Hash
-                    size={16}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600"
-                  />
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500 group-focus-within:text-amber-400 transition-colors">
+                    <Hash size={16} />
+                  </div>
+
                   <input
                     type="text"
                     placeholder="e.g. 0987-6543-2101"
