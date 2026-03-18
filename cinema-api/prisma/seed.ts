@@ -251,6 +251,10 @@ async function main() {
   }
 
   console.log(`🌱 Generating showtimes for today...`);
+
+  const targetDate = new Date();
+  targetDate.setHours(0, 0, 0, 0);
+
   for (let i = 0; i < movies.length; i++) {
     const movie = movies[i];
     const selectedHall = hallOptions[i % 4];
@@ -268,7 +272,7 @@ async function main() {
 
     for (const t of times) {
       const { hour, minute } = parseTime(t);
-      const start = new Date(baseDate);
+      const start = new Date(targetDate);
       start.setHours(hour, minute, 0, 0);
       const end = new Date(start.getTime() + movie.duration * 60000);
 
