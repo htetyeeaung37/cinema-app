@@ -47,8 +47,18 @@ export default function SeatSelectionPage() {
           hour: "2-digit",
           minute: "2-digit",
         });
+        const dateStr = startTime.toLocaleDateString([], {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
 
-        setSelectedShowtime({ ...data, time: timeStr, hall: data.hall.name });
+        setSelectedShowtime({
+          ...data,
+          date: dateStr,
+          time: timeStr,
+          hall: data.hall.name,
+        });
         setSelectedMovie({
           ...data.movie,
           poster: data.movie.posterUrl,

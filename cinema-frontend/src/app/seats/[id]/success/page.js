@@ -21,13 +21,21 @@ export default function SuccessPage() {
 
   if (!movieData) return <div className="min-h-screen bg-[#0F172A]" />;
 
+  const showtimeDate = new Date(movieData.startTime);
+  const formattedDate = showtimeDate.toLocaleDateString([], {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
     <BookingConfirmation
       selectedSeats={seats}
       totalPrice={parseFloat(total)}
       selectedMovie={movieData.movie}
       selectedShowtime={{
-        time: new Date(movieData.startTime).toLocaleTimeString([], {
+        date: formattedDate,
+        time: showtimeDate.toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         }),

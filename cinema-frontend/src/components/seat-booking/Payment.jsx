@@ -87,6 +87,10 @@ export default function Payment({
                 <span className="text-white">{selectedMovie?.title}</span>
               </div>
               <div className="flex justify-between font-bold uppercase text-xs italic">
+                <span className="text-slate-500">Date</span>
+                <span className="text-white">{selectedShowtime?.date}</span>
+              </div>
+              <div className="flex justify-between font-bold uppercase text-xs italic">
                 <span className="text-slate-500">Hall / Time</span>
                 <span className="text-white">
                   {selectedShowtime?.hall} • {selectedShowtime?.time}

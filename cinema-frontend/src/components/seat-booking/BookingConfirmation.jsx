@@ -45,7 +45,7 @@ export default function BookingConfirmation({
     { label: "MOVIE", value: selectedMovie?.title || "N/A", icon: "🎬" },
     {
       label: "DATE & TIME",
-      value: selectedShowtime?.time || "N/A",
+      value: `${selectedShowtime?.date || ""} • ${selectedShowtime?.time || "N/A"}`,
       icon: "📅",
     },
     {
